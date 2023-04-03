@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Card</title>
+    <style>
+        @property --rotate {
+        syntax: "<angle>";
+        initial-value: 132deg;
+        inherits: false;
+}
+
+        :root {
+            --card-height: 65vh;
+            --card-width: calc(var(--card-height)/1.5);
+        }
+
+        body {
+            align-items: center;
+            background-color: #212534;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .card {
+            align-items: center;
+            background: #191c29;
+            border-radius: 6px;
+            color: rgb(88 199 250 / 0%);
+            cursor: pointer;
+            display: flex;
+            font-family: cursive;
+            font-size: 1.5em;
+            height: var(--card-height);
+            justify-content: center;
+            padding: 3px;
+            position: relative;
+            text-align: center;
+            width: var(--card-width);
+
+        }
+
+        .card:hover{
+            color: rgb(88 199 250 / 100%);
+            transition: color 1s;
+        }
+
+        .card:hover:before, .card:hover.after {
+            animation: none;
+            opacity: 0;
+        }
+
+        .card::before{
+            animation: spin 2.5s linear infinite;
+            background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+            border-radius: 8px;
+            content: "";
+            height: 102%;
+            left: -2%;
+            position: absolute;
+            top: -1%;
+            width: 104%;
+            z-index: -1;
+
+        }
+
+        .card::after{
+            animation: 2.5s linear infinite;
+            background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+            content: "";
+            filter: blur(calc(var(--card-height)));
+            height: 100%;
+            left: 0;
+            margin: 0 auto;
+            opacity: 1;
+            position: absolute;
+            right: 0;
+            top: calc(var(--card-height) / 6);
+            transform: scale(0.8);
+            transition: opacity 0.5s;
+            width: 100%;
+            z-index: -1;
+        }
+
+        @keyframes spin {
+            0% {--rotate: 0deg;}
+            100% {--rotate: 360deg;}
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="card">Magic Card</div>
+</body>
+</html>
